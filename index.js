@@ -9,6 +9,13 @@ app.use(cors());
 app.use(express.json());
 
 
+const isProduction = process.env.NODE_ENV === 'production'
+const origin = {
+  origin: isProduction ? 'https://pern-todo-be.herokuapp.com/' : '*',
+}
+
+app.use(cors(origin))
+
 // ROUTES //
 // create a todo
 app.post('/todos', async (req, res) => {
